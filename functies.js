@@ -1,5 +1,10 @@
 function kop() {
- 	
+ 	/* 
+		Dit kop systeem komt uit andere modules en is op dit moment nog niet aangepast aan DEZE module
+		ToDo:  adapt
+	*/
+	
+	
  	// bepalen eigen filenaam en volgende en vorige pagina.
  	var url = window.location.pathname;
  	var filename = url.substring(url.lastIndexOf('/')+1);
@@ -14,6 +19,8 @@ function kop() {
 	var volgendePagina = "pagina" + volgende.toString() +  ".php";
 	var vorigePagina = "pagina" + vorige.toString() +  ".php";
 	console.log("Filenaam = " + filename);
+	
+	// uiteraard speciale behandeling als dit de index.php is
 	if (filename=="index.php") {
 		volgendePagina = "pagina1.php";
 		vorigePagina = "index.php";
