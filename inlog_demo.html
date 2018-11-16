@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/_lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/_lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="/_lib/prism/prism.css" rel="stylesheet" />
+<link href="jstijl.css" rel="stylesheet" />
+<meta charset="UTF-8">
+</head>
+<body>
+<header>
+</header>
+
+<article>
+	<div id="koppie"></div>
+<h1>Een minimalistisch inlogsysteem</h1>
+<p>Hierna volgt een minimalistisch inlogsysteem dat op vele fronten te verbeteren valt, maar wel de kern raakt van een inlogsysteem. </p>
+<p>Het begint natuurlijk met het inlogformulier inloggen.php. Hier uitgevoerd in klassiek html zonder franje.</p>
+<pre class="line-numbers" data-src="inloggen.php","php"><code class="language-php"></code></pre>
+<p>Let op de formulering in regel 8 en zorg voor goede namen en typen van de input elementen.</p>
+<p>Dit formulier stuurt de ingevoerde gegevens naar menu.php. Dat ziet er zo uit:
+	</p>
+<pre class="line-numbers" data-src="menu.hph","php"><code class="language-php"></code></pre>	
+<p>Op regel 3 koppelt dit bestand zich aan het servergeheugen. Pas daarna kan een pagina gebruik maken van $_SESSION.<br>
+Op regel 9 en 10 worden de ingevulde gegevens opgevraagd. (Verbeterpunt: een goed inlogsysteem controleert ook altijd of de ingevulde gegevens compleet zijn!)<br>
+Op regel 12 e.v. wordt een simpele controle uitgevoerd. (Verbeterpunt: in dit systeem kan maar één user inloggen. Dat kan in een serieus inlogsysteem nooit de bedoeling zijn!!). Afhankelijk van de goede combinatie wordt een vlagvariabele ($ingelogd) op true of false gezet.
+Regels 19 e.v. gaan voorspelbaar aan de slag met die vlagvariabele. Let op regel 25 en 26, daar worden de usergegevens IN $_SESSION geplaatst. </p>
+<p>Als we kijken bij pagina2.php, de eerstvolgende pagina waar de user naar toe kan gaan dan zien we dat deze pagina eerst gaat kijken of de user wel ingelogd is:
+</p>
+<pre class="line-numbers" data-src="pagina2.hph","php"><code class="language-php"></code></pre>	
+<p>Kijk naar regel 9: alleen als $_SESSION[ingelogd] bestaat ('isset') EN als de waarde daarvan ook nog eens true is krijgt de user de inhoude van de pagina te zien, anders (regel 20) wordt de user via het header commando direct teruggestuurd naar de inlogpagina. Deze pagina2.php zou dus nooit benaderd moeten kunnen worden door een user die NIET is ingelogd.</p>
+<p>De uitlogpagina tenslotte is erg recht toe, recht aan en stuurt de user meteen terug naar de inlogpagina:</p>
+<pre class="line-numbers" data-src="uitloggen.hph","php"><code class="language-php"></code></pre>	
+<p>Een verbeterpunt voor de controle of iemand is ingelogd kan nog zijn dat hiervan een functie wordt gemaakt die in functies.php een plekje krijgt. Op dit moment ziet functies.php er eenvoudig uit met een kop en een voet functie:</p>
+<pre class="line-numbers" data-src="functies.hph","php"><code class="language-php"></code></pre>	
+<p>Om de belangrijkste verbeterpunten nog eens te noemen:
+<ul>
+<li>De controle op usernaam en wachtwoord moet geavanceerder (password encryptie)</li>
+<li>Daar hoort ook een controle bij op compleetheid van de invoer!</li>
+<li>Er moet een systeem komen waardoor op schaalbare wijze veel meer users aan het systeem kunnen worden toegevoegd</li>
+<li>Functies als usernaam weergeven in de kop en controleren of iemand wel is ingelogd, en misschien ook wel uitloggen moeten een plekje krijgen in de functie bibliotheek en zo voor iedere pagina waarop ze nodig zijn beschikbaar komen.</li>
+<li>De vormgeving via html/css moet natuurlijk verbeterd worden.</li>
+</ul>	
+	
+	</p>
+</article>
+<footer>
+
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/_lib/bootstrap/js/bootstrap.min.js"></script> 
+
+<script src="/_lib/prism/prism.js"></script>
+<script src="/_lib/clip/clipboard.min.js"></script>
+
+<script src="functies.js"></script>
+<script>
+	
+$( document ).ready(function(){
+  kop();
+ 
+});
+
+</script>
+</body>
+</html>
