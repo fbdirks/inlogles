@@ -1,5 +1,5 @@
 <?php
-
+/* more comments */
 function kop($titel) {
 	?>
 	<!DOCTYPE html>
